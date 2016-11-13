@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">ElemeApplication</string>
+    <string name="menu_name">菜单</string>
+    <string name="dish_name">菜名</string>
+</resources>
