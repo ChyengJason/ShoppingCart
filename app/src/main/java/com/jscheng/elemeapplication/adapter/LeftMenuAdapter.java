@@ -1,4 +1,4 @@
-package com.jscheng.elemeapplication.Adapter;
+package com.jscheng.elemeapplication.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.jscheng.elemeapplication.Model.DishMenu;
+import com.jscheng.elemeapplication.model.DishMenu;
 import com.jscheng.elemeapplication.R;
 
 import java.util.ArrayList;

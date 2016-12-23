@@ -1,4 +1,4 @@
-package com.jscheng.elemeapplication.Wiget;
+package com.jscheng.elemeapplication.wiget;
 
 /**
  * Created by cheng on 16-11-13.

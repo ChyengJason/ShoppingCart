@@ -1,4 +1,4 @@
-package com.jscheng.elemeapplication.Model;
+package com.jscheng.elemeapplication.model;
 
 import java.util.ArrayList;
 

@@ -1,4 +1,4 @@
-package com.jscheng.elemeapplication.Wiget;
+package com.jscheng.elemeapplication.wiget;
 
 import android.content.Context;
 import android.content.res.TypedArray;

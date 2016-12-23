@@ -56,7 +56,6 @@
         </RelativeLayout>
     </LinearLayout>
 
-
     <FrameLayout
         android:id="@+id/shopping_cart_layout"
         android:layout_width="@dimen/shopping_cart_circle_size"
@@ -64,6 +63,7 @@
         android:layout_marginLeft="@dimen/activity_horizontal_margin"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="@dimen/shopping_cart_bottom_margin"
+        android:clickable="true"
         android:background="@drawable/circle">
         <ImageView
             android:id="@+id/shopping_cart"

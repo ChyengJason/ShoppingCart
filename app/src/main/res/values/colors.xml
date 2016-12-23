@@ -6,6 +6,8 @@
     <color name="red">#ea0f1e</color>
     <color name="light_gray">#efefef</color>
     <color name="gray">#e7e4e4</color>
+    <color name="deep_gray">#afaeae</color>
+    <color name="deep_gray_2">#636262</color>
     <color name="black">#000</color>
     <color name="light_white">#e2e1e1</color>
     <color name="light_black">#fd383838</color>

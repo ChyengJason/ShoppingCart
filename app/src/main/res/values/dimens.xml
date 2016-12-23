@@ -20,7 +20,10 @@
     <dimen name="shopping_cart_image_height">35dp</dimen>
     <dimen name="shopping_cart_circle_size">60dp</dimen>
     <dimen name="shopping_cart_bottom_margin">5dp</dimen>
+    <dimen name="shopping_cart_right_margin">8dp</dimen>
     <dimen name="shopping_cart_total_price_left_magrin">90dp</dimen>
     <dimen name="shopping_cart_total_price_word_size">20sp</dimen>
+    <dimen name="shopping_cart_small_size">15sp</dimen>
+    <dimen name="shopping_cart_bottom_recycle_height">250dp</dimen>
 </resources>
 

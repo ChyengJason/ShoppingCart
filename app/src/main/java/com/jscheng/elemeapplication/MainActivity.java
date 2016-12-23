@@ -3,39 +3,46 @@ package com.jscheng.elemeapplication;
 import android.animation.Animator;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
-import android.animation.TypeEvaluator;
-import android.graphics.Color;
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.graphics.PointF;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 import android.view.animation.AccelerateInterpolator;
-import android.view.animation.AnimationSet;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.jscheng.elemeapplication.Adapter.LeftMenuAdapter;
-import com.jscheng.elemeapplication.Adapter.RightDishAdapter;
-import com.jscheng.elemeapplication.Interface.ShopCartImp;
-import com.jscheng.elemeapplication.Model.Dish;
-import com.jscheng.elemeapplication.Model.DishMenu;
-import com.jscheng.elemeapplication.Model.ShopCart;
-import com.jscheng.elemeapplication.Wiget.FakeAddImageView;
-import com.jscheng.elemeapplication.Wiget.PointFTypeEvaluator;
+import com.jscheng.elemeapplication.adapter.LeftMenuAdapter;
+import com.jscheng.elemeapplication.adapter.RightDishAdapter;
+import com.jscheng.elemeapplication.imp.ShopCartImp;
+import com.jscheng.elemeapplication.model.Dish;
+import com.jscheng.elemeapplication.model.DishMenu;
+import com.jscheng.elemeapplication.model.ShopCart;
+import com.jscheng.elemeapplication.wiget.FakeAddImageView;
+import com.jscheng.elemeapplication.wiget.PointFTypeEvaluator;
+import com.jscheng.elemeapplication.wiget.ShopCartDialog;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity implements LeftMenuAdapter.onItemSelectedListener,ShopCartImp {
+public class MainActivity extends AppCompatActivity implements LeftMenuAdapter.onItemSelectedListener,ShopCartImp,ShopCartDialog.ShopCartDialogImp{
     private final static String TAG = "MainActivity";
     private RecyclerView leftMenu;//左侧菜单栏
     private RecyclerView rightMenu;//右侧菜单栏
     private TextView headerView;
     private LinearLayout headerLayout;//右侧菜单栏最上面的菜单
+    private LinearLayout bottomLayout;
     private DishMenu headMenu;
     private LeftMenuAdapter leftAdapter;
     private RightDishAdapter rightAdapter;
@@ -44,9 +51,11 @@ public class MainActivity extends AppCompatActivity implements LeftMenuAdapter.o
     private ShopCart shopCart;
 //    private FakeAddImageView fakeAddImageView;
     private ImageView shoppingCartView;
+    private FrameLayout shopingCartLayout;
     private TextView totalPriceTextView;
     private TextView totalPriceNumTextView;
     private RelativeLayout mainLayout;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,8 +73,9 @@ public class MainActivity extends AppCompatActivity implements LeftMenuAdapter.o
         headerView = (TextView)findViewById(R.id.right_menu_tv);
         headerLayout = (LinearLayout)findViewById(R.id.right_menu_item);
 //        fakeAddImageView = (FakeAddImageView)findViewById(R.id.right_dish_fake_add);
+        bottomLayout = (LinearLayout)findViewById(R.id.shopping_cart_bottom);
         shoppingCartView = (ImageView) findViewById(R.id.shopping_cart);
-
+        shopingCartLayout = (FrameLayout) findViewById(R.id.shopping_cart_layout);
         totalPriceTextView = (TextView)findViewById(R.id.shopping_cart_total_tv);
         totalPriceNumTextView = (TextView)findViewById(R.id.shopping_cart_total_num);
 
@@ -120,6 +130,13 @@ public class MainActivity extends AppCompatActivity implements LeftMenuAdapter.o
                         }
                     }
                 }
+            }
+        });
+
+        shopingCartLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showCart(view);
             }
         });
     }
@@ -299,6 +316,28 @@ public class MainActivity extends AppCompatActivity implements LeftMenuAdapter.o
             totalPriceTextView.setVisibility(View.GONE);
             totalPriceNumTextView.setVisibility(View.GONE);
         }
+    }
 
+    private void showCart(View view) {
+        if(shopCart!=null && shopCart.getShoppingAccount()>0){
+            ShopCartDialog dialog = new ShopCartDialog(this,shopCart,R.style.cartdialog);
+            Window window = dialog.getWindow();
+            dialog.setShopCartDialogImp(this);
+            dialog.setCanceledOnTouchOutside(true);
+            dialog.setCancelable(true);
+            dialog.show();
+            WindowManager.LayoutParams params = window.getAttributes();
+            params.width = WindowManager.LayoutParams.MATCH_PARENT;
+            params.height = WindowManager.LayoutParams.WRAP_CONTENT;
+            params.gravity = Gravity.BOTTOM;
+            params.dimAmount =0.5f;
+            window.setAttributes(params);
+        }
+    }
+
+    @Override
+    public void dialogDismiss() {
+        showTotalPrice();
+        rightAdapter.notifyDataSetChanged();
     }
 }

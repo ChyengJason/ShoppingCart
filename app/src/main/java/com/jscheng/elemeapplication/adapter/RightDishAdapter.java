@@ -1,4 +1,4 @@
-package com.jscheng.elemeapplication.Adapter;
+package com.jscheng.elemeapplication.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -9,11 +9,11 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.jscheng.elemeapplication.Model.Dish;
-import com.jscheng.elemeapplication.Model.DishMenu;
-import com.jscheng.elemeapplication.Model.ShopCart;
+import com.jscheng.elemeapplication.model.Dish;
+import com.jscheng.elemeapplication.model.DishMenu;
+import com.jscheng.elemeapplication.model.ShopCart;
 import com.jscheng.elemeapplication.R;
-import com.jscheng.elemeapplication.Interface.ShopCartImp;
+import com.jscheng.elemeapplication.imp.ShopCartImp;
 
 import java.util.ArrayList;
 

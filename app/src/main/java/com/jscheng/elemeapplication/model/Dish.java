@@ -1,4 +1,4 @@
-package com.jscheng.elemeapplication.Model;
+package com.jscheng.elemeapplication.model;
 
 /**
  * Created by cheng on 16-11-10.
